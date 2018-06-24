@@ -1,29 +1,27 @@
-# Example sbt project that compiles using Dotty
+# 使用 Dotty 编译的 SBT 示例项目
 
-[![Build Status](https://travis-ci.org/lampepfl/dotty-example-project.svg?branch=master)](https://travis-ci.org/lampepfl/dotty-example-project)
+[![Build Status](https://travis-ci.org/Dotty-China/dotty-example-project.svg?branch=master)](https://travis-ci.org/Dotty-China/dotty-example-project)
 
-## Usage
+## 用法
 
-This is a normal sbt project, you can compile code with `sbt compile` and run it
-with `sbt run`, `sbt console` will start a Dotty REPL.
+这是一个普通的 sbt 项目, 你可以使用 `sbt compile` 编译它, 使用 `sbt run` 来运行它, 
+而 `sbt console` 会启动一个 Dotty REPL.
 
-If compiling this example project fails, you probably have a global sbt plugin
-that does not work with dotty, try to disable all plugins in
-`~/.sbt/1.0/plugins` and `~/.sbt/1.0`.
+如果这个项目编译失败了, 那可能是你有一个不适用于 Dotty 的全局 sbt 插件, 
+请尝试禁用 `~/.sbt/1.0/plugins` 和 `~/.sbt/1.0` 下的所有插件.
 
-### IDE support
+### IDE 支持
 
-Dotty comes built-in with IDE support, to try it out see
-http://www.dotty-china.org/docs/usage/ide-support.html
+Dotty 内置了 IDE 支持, 可以试试看 http://www.dotty-china.org/docs/usage/ide-support.html
 
-## Making a new Dotty project
-The fastest way to start a new Dotty project is to use one of the following templates:
-* [Simple Dotty project](https://github.com/lampepfl/dotty.g8)
-* [Dotty project that cross-compiles with Scala 2](https://github.com/lampepfl/dotty-cross.g8)
+## 创建一个新的 Dotty 项目
+最快创建 Dotty 项目的方法是使用下面的模板之一: 
+* [简单 Dotty 项目](https://github.com/lampepfl/dotty.g8)
+* [与 Scala 2 交叉编译的 Dotty 项目](https://github.com/lampepfl/dotty-cross.g8)
 
-## Using Dotty in an existing project
+## 在已有项目中使用 Dotty
 
-You will need to make the following adjustments to your build:
+你需要对你的构建配置进行以下调整
 
 ### project/plugins.sbt
 ```scala
@@ -32,45 +30,40 @@ addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.2.2")
 
 ### project/build.properties
 ```scala
-sbt.version=1.1.4
+sbt.version=1.1.6
 ```
 
 Older versions of sbt are not supported.
 
 
 ### build.sbt
-Any version number that starts with `0.` is automatically recognized as Dotty by
-the `sbt-dotty` plugin, you don't need to set up anything:
+任何以 `0.` 开头的版本号都会被 `sbt-dotty` 插件识别为 Dotty 版本, 你不需要设置任何东西: 
 
 ```scala
 scalaVersion := "0.8.0-RC1"
 ```
 
-#### Nightly builds
-If the latest release of Dotty is missing a bugfix or feature you need, you may
-wish to use a nightly build. Look at the bottom of
-https://repo1.maven.org/maven2/ch/epfl/lamp/dotty_0.8/ to find the version
-number for the latest nightly build. Alternatively, you can set `scalaVersion :=
-dottyLatestNightlyBuild.get` to always use the latest nightly build of dotty.
+#### 每日构建
+如果最新版本的 Dotty 缺少你需要的错误修复或者功能, 您可能会希望使用每日构建. 
+查看 https://repo1.maven.org/maven2/ch/epfl/lamp/dotty_0.8/ 最底部
+可以得到版本号最新的每日构建版本. 另外, 你可以设置 `scalaVersion :=
+dottyLatestNightlyBuild.get` 来保证总是使用最新的 Dotty 每日构建版本.
 
-## Getting your project to compile with Dotty
+## 让你的项目使用 Dotty 进行编译
 
-When porting an existing project, it's a good idea to start out with the Scala 2
-compatibility mode (note that this mode affects typechecking and thus may
-prevent some valid Dotty code from compiling) by adding to your `build.sbt`:
+在移植现有项目时, 开始时通过添加这些到你的 `build.sbt` 中以使用 Scala 2 兼容模式
+是一个不错的选择 (请注意, 此模式会影响类型检查, 因而可能不能编译一些有效的 Dotty 代码):
 
 ```scala
 scalacOptions ++= { if (isDotty.value) Seq("-language:Scala2") else Nil }
 ```
 
-Using the `isDotty` setting ensures that this option will only be set when
-compiling with Dotty.
+使用 `isDotty` 设置选项可以确保此编译时选项只用于编译 Dotty.
 
-A tool to port code from Scala 2.x to Dotty is currently in development at
+将代码从 Scala 2.x 移植到 Dotty 的工具目前正在开发中: 
 https://github.com/scalacenter/scalafix
 
-If your build contains dependencies that have only been published for Scala 2.x,
-you may be able to get them to work on Dotty by replacing:
+如果您的构建配置包含仅针对 Scala 2.x 发布的依赖项， 您可以通过这样替换让他们在Dotty上工作: 
 
 ```scala
     libraryDependencies += "a" %% "b" % "c"
@@ -82,14 +75,13 @@ by:
     libraryDependencies += ("a" %% "b" % "c").withDottyCompat(scalaVersion.value)
 ```
 
-This will have no effect when compiling with Scala 2.x, but when compiling
-with Dotty this will change the cross-version to a Scala 2.x one. This
-works because Dotty is currently retro-compatible with Scala 2.x.
+这在编译 Scala 2.x 的时候不会产生影响, 但是在编译 Dotty 的时候
+它会选择 Scala 2.x 版本的依赖项. 之所以它可以工作, 是因为目前 
+Dotty 与 Scala 2.x 兼容
 
-**NOTE**: Dotty's retro-compatibility with Scala 2.x will be dropped before
-Dotty is released, you should not rely on it.
+**注意**: Dotty 对 Scala 2.x 的向后兼容性将在 Dotty 正式发布前被删除, 
+您不应该依赖它.
 
-## Discuss
+## 讨论
 
-Feel free to come chat with us on the
-[Dotty gitter](http://gitter.im/lampepfl/dotty)!
+随时欢迎您与我们在 [Dotty gitter](http://gitter.im/lampepfl/dotty) 上进行讨论!
