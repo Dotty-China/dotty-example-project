@@ -1,5 +1,5 @@
 /**
-  * Union Types: http://dotty.epfl.ch/docs/reference/union-types.html
+  * 并集类型: http://www.dotty-china.org/docs/reference/union-types.html
   */
 object UnionTypes {
 
@@ -7,7 +7,7 @@ object UnionTypes {
   final case class DivisionByZero(msg: String) extends Division
   final case class Success(double: Double) extends Division
 
-  // You can create type aliases for your union types (sum types).
+  // 你可以为并集类型创建类型别名 (sum types).
   type DivisionResult = DivisionByZero | Success
 
   sealed trait List[+A]
@@ -27,13 +27,13 @@ object UnionTypes {
 
     val divisionResultSuccess: DivisionResult = safeDivide(4, 2)
 
-    // commutative
+    // 可交换
     val divisionResultFailure: Success | DivisionByZero = safeDivide(4, 0)
 
-    // calling `either` function with union typed value.
+    // 用并集类型的对象调用 `either` 方法.
     println(either(divisionResultSuccess))
 
-    // calling `either` function with union typed value.
+    // 用并集类型的对象调用 `either` 方法.
     println(either(divisionResultFailure))
 
     val list: Cons[Int] | Empty = Cons(1, Cons(2, Cons(3, Empty())))

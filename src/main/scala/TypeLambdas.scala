@@ -1,5 +1,5 @@
 /**
-  * Type Lambdas: http://dotty.epfl.ch/docs/reference/type-lambdas.html
+  * 类型 lambda: http://www.dotty-china.org/docs/reference/type-lambdas.html
   */
 object TypeLambdas {
 

@@ -1,6 +1,6 @@
 
 /**
-  * Structural Types: http://dotty.epfl.ch/docs/reference/changed/structural-types.html
+  * 结构类型: http://www.dotty-china.org/docs/reference/changed/structural-types.html
   */
 object StructuralTypes {
 
@@ -22,7 +22,7 @@ object StructuralTypes {
     println(person.age)
 
     println(invalidPerson.name)
-    // age field is java.util.NoSuchElementException: None.get
-    //println(invalidPerson.age)
+    // age 字段是 java.util.NoSuchElementException: None.get
+    // println(invalidPerson.age)
   }
 }

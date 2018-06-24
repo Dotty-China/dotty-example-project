@@ -1,5 +1,5 @@
 /**
-  * Intersection Types: http://dotty.epfl.ch/docs/reference/intersection-types.html
+  * 交集类型: http://www.dotty-china.org/docs/reference/intersection-types.html
   */
 object IntersectionTypes {
 

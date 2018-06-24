@@ -1,23 +1,23 @@
 import scala.language.strictEquality
 
 /**
-  * Multiversal Equality: http://dotty.epfl.ch/docs/reference/multiversal-equality.html
-  * scala.Eq definition: https://github.com/lampepfl/dotty/blob/master/library/src/scala/Eq.scala
+  * 多元相等: http://www.dotty-china.org/docs/reference/multiversal-equality.html
+  * scala.Eq 定义在: https://github.com/lampepfl/dotty/blob/master/library/src/scala/Eq.scala
   */
 object MultiversalEquality {
 
   def test: Unit = {
 
-    // Values of types Int and String cannot be compared with == or !=,
-    // unless we add a custom implicit like:
+    // Int 与 String 类型的值不能够用 == 或 != 进行比较,
+    // 除非我们提供一个这样的隐式参数:
     implicit def eqIntString: Eq[Int, String] = Eq
     println(3 == "3")
 
-    // By default, all numbers are comparable, because of;
+    //默认情况下, 所有数值都能够互相比较, 因为我们有: 
     // implicit def eqNumber : Eq[Number, Number] = Eq
     println(3 == 5.1)
 
-    // By default, all Sequences are comparable, because of;
+    // 默认情况下所有序列都能够互相比较, 因为我们有:
     // implicit def eqSeq[T, U](implicit eq: Eq[T, U]): Eq[Seq[T], Seq[U]] = Eq
     println(List(1, 2) == Vector(1, 2))
 
@@ -27,8 +27,8 @@ object MultiversalEquality {
     val a = new A(4)
     val b = new B(4)
 
-    // scala.language.strictEquality is enabled, therefore we need some extra implicits
-    // to compare instances of A and B.
+    // scala.language.strictEquality 被启用, 
+    // 此时我们需要提供这样两个隐式参数才能将 a 与 b 进行比较:
     implicit def eqAB: Eq[A, B] = Eq
     implicit def eqBA: Eq[B, A] = Eq
 

@@ -1,6 +1,6 @@
 
 /**
-  * Implicit Conversions: http://dotty.epfl.ch/docs/reference/changed/implicit-conversions.html
+  * 隐式转换: http://www.dotty-china.org/docs/reference/changed/implicit-conversions.html
   */
 object ImplicitConversion {
 

@@ -1,6 +1,6 @@
 
 /**
-  * Named Type Arguments: http://dotty.epfl.ch/docs/reference/named-typeargs.html
+  * 具名类型参数: http://www.dotty-china.org/docs/reference/named-typeargs.html
   */
 object NamedTypeArguments {
 

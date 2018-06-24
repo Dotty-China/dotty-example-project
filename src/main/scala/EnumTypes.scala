@@ -1,5 +1,5 @@
 /**
-  * Enum Types: http://dotty.epfl.ch/docs/reference/adts.html
+  * 枚举类型: http://www.dotty-china.org/docs/reference/adts.html
   */
 object EnumTypes {
 

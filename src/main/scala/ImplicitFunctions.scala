@@ -3,8 +3,8 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 
 /**
-  * Implicit Function Types:
-  * - http://dotty.epfl.ch/docs/reference/implicit-function-types.html,
+  * 隐式函数类型:
+  * - http://www.dotty-china.org/docs/reference/implicit-function-types.html,
   * - https://www.scala-lang.org/blog/2016/12/07/implicit-function-types.html
   */
 object ImplicitFunctions {

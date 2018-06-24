@@ -2,8 +2,8 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "dotty-example-project",
-    description := "Example sbt project that compiles using Dotty",
+    description := "使用 Dotty 编译的 SBT 示例项目",
     version := "0.1",
 
-    scalaVersion := "0.8.0-RC1"
+    scalaVersion := "0.8.0"
   )

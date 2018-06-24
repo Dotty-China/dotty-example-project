@@ -1,6 +1,6 @@
 
 /**
-  * Pattern Matching: http://dotty.epfl.ch/docs/reference/changed/pattern-matching.html
+  * 模式匹配: http://www.dotty-china.org/docs/reference/changed/pattern-matching.html
   */
 object PatternMatching {
 
@@ -15,8 +15,8 @@ object PatternMatching {
   object productPattern {
 
     class Person(name: String, age: Int) extends Product {
-      // if we not define that, it will give compile error.
-      // we change the order
+      // 如果我们没有定义这些, 那么会产生编译错误
+      // 我们交换一下顺序
       def _1 = age
       def _2 = name
 
@@ -34,7 +34,7 @@ object PatternMatching {
 
   object seqPattern {
 
-    // adapted from http://danielwestheide.com/blog/2012/11/28/the-neophytes-guide-to-scala-part-2-extracting-sequences.html
+    // 适应 http://danielwestheide.com/blog/2012/11/28/the-neophytes-guide-to-scala-part-2-extracting-sequences.html
     object Names {
       def unapplySeq(name: String): Option[Seq[String]] = {
         val names = name.trim.split(" ")
@@ -67,7 +67,7 @@ object PatternMatching {
       case s => println(s"$s has an odd number of characters")
     }
 
-    // http://dotty.epfl.ch/docs/reference/changed/vararg-patterns.html
+    // http://www.dotty-china.org/docs/reference/changed/vararg-patterns.html
     def containsConsecutive(list: List[Int]): Boolean = list match {
       case List(a, b, xs: _ *) => if (a == b) true else containsConsecutive(b :: xs.toList)
       case List(a, _ : _*) => false

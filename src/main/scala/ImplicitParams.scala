@@ -1,8 +1,8 @@
 import scala.util.{Success, Try}
 
 /**
-  * Implicit By-Name Parameters:
-  * - http://dotty.epfl.ch/docs/reference/implicit-by-name-parameters.html
+  * 隐式传名参数:
+  * - http://www.dotty-china.org/docs/reference/implicit-by-name-parameters.html
   */
 object ImplicitParams {
 
